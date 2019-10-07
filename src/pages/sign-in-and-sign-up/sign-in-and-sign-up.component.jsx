@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import SignIn from '../../components/sign-in/sign-in.component';
+import SignUp from '../../components/sign-up/sign-up.component';
 
 import './sign-in-and-sign-up.scss';
 
@@ -12,8 +13,9 @@ class SignInAndSignUpPage extends Component {
 	}
 	render() {
 		return (
-			<div className="sign-in-and-sign-out">
+			<div className="sign-in-and-sign-up">
 				<SignIn />
+				<SignUp />
 			</div>
 		);
 	}
