@@ -2,6 +2,10 @@
 	"name": "reactjs-crown-clothing",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node": "12.4.0",
+		"npm": "6.9.0"
+	},
 	"dependencies": {
 		"firebase": "^7.1.0",
 		"node-sass": "^4.12.0",
