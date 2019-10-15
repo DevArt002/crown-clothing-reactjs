@@ -25,4 +25,5 @@ yarn-error.log*
 yarn.lock
 package-lock.json
 
-# /src/firebase/firebase.config.js
+# Prevent firebase.config.js from being committed in the case of heroku deploy
+/src/firebase/firebase.config.js
