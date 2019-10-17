@@ -32,6 +32,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
+// this code is used a single time for moving shop data into firebase programmatically.
+export const addCollections = async collections => {
+	var collectionsRef = firestore.collection('collections');
+
+	const batch = firestore.batch();
+	collections.forEach(collection => {
+		const newDocRef = collectionsRef.doc();
+		batch.set(newDocRef, collection);
+	});
+
+	return await batch.commit();
+};
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();

@@ -3,10 +3,16 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {
+	auth,
+	createUserProfileDocument
+	/* addCollections */
+} from './firebase/firebase.utils';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { setCurrentUser } from './redux/user/user.actions';
+// this code is used a single time to move shop data to firestore.
+// import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 import Header from './components/header/header.component';
 import Homepage from './pages/homepage/homepage.component';
@@ -20,7 +26,7 @@ class App extends Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		const { setCurrentUser } = this.props;
+		const { setCurrentUser /* collections */ } = this.props;
 
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 			if (userAuth) {
@@ -34,6 +40,7 @@ class App extends Component {
 				});
 			} else {
 				setCurrentUser(userAuth);
+				// addCollections(collections);
 			}
 		});
 	}
@@ -69,6 +76,7 @@ class App extends Component {
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser
+	// collections: selectCollectionsForPreview
 });
 
 const mapDispatchToProps = dispatch => ({
