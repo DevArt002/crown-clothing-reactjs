@@ -32,6 +32,24 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
+export const convertCollectionsSnapshotToMap = collections => {
+	const transformedCollection = collections.docs.map(doc => {
+		const { title, routeName, items } = doc.data();
+
+		return {
+			id: doc.id,
+			title,
+			routeName,
+			items
+		};
+	});
+
+	return transformedCollection.reduce((accumulator, collection) => {
+		accumulator[collection.title.toLowerCase()] = collection;
+		return accumulator;
+	}, {});
+};
+
 // this code is used a single time for moving shop data into firebase programmatically.
 export const addCollections = async collections => {
 	var collectionsRef = firestore.collection('collections');
