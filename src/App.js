@@ -20,9 +20,7 @@ class App extends Component {
 		checkUserSession();
 	}
 
-	componentWillUnmount() {
-		this.unsubscribeFromAuth();
-	}
+	componentWillUnmount() {}
 
 	render() {
 		return (
